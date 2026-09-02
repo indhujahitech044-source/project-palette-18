@@ -59,6 +59,13 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-chrome-violet: var(--chrome-violet);
+  --color-chrome-pink: var(--chrome-pink);
+  --color-chrome-blue: var(--chrome-blue);
+  --color-chrome-lime: var(--chrome-lime);
+  --color-chrome-ink: var(--chrome-ink);
+  --color-chrome-cream: var(--chrome-cream);
+  --color-chrome-line: var(--chrome-line);
 }
 
 :root {
@@ -95,6 +102,17 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --chrome-violet: oklch(0.49 0.25 293);
+  --chrome-pink: oklch(0.72 0.22 328);
+  --chrome-blue: oklch(0.72 0.19 237);
+  --chrome-lime: oklch(0.9 0.2 117);
+  --chrome-ink: oklch(0.17 0.035 305);
+  --chrome-cream: oklch(0.97 0.018 298);
+  --chrome-line: oklch(0.17 0.035 305 / 12%);
+  --chrome-gradient: linear-gradient(120deg, var(--chrome-violet), var(--chrome-blue) 42%, var(--chrome-pink) 78%);
+  --chrome-soft-gradient: linear-gradient(135deg, oklch(0.96 0.03 293), oklch(0.98 0.02 328));
+  --chrome-login-gradient: radial-gradient(120% 120% at 15% 0%, oklch(0.94 0.05 293) 0%, var(--chrome-cream) 45%, oklch(0.91 0.06 293) 100%);
+  --chrome-shadow: 0 24px 70px -22px oklch(0.49 0.25 293 / 45%);
 }
 
 .dark {
@@ -132,13 +150,43 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
-@layer base {
-  * {
-    border-color: var(--color-border);
-  }
+@utility chrome-button {
+  background: var(--chrome-gradient);
+  color: var(--primary-foreground);
+  font-family: var(--font-display);
+  box-shadow: 0 12px 24px -12px oklch(0.72 0.22 328 / 55%);
+  &:hover { filter: brightness(1.06); }
+}
 
+@utility chrome-mark {
+  background: var(--chrome-gradient);
+  color: var(--primary-foreground);
+  font-family: var(--font-display);
+}
+
+@utility chrome-project-worth {
+  background: linear-gradient(135deg, var(--chrome-violet), var(--chrome-pink));
+  color: var(--primary-foreground);
+}
+
+@utility chrome-login-shell {
+  background: var(--chrome-login-gradient);
+}
+
+@utility chrome-donut {
+  background: conic-gradient(var(--chrome-violet) 0 28%, var(--chrome-pink) 28% 61%, var(--chrome-lime) 61% 100%);
+}
+
+@utility chrome-bar-violet { background: linear-gradient(90deg, var(--chrome-violet), var(--chrome-pink)); }
+@utility chrome-bar-blue { background: linear-gradient(90deg, var(--chrome-blue), var(--chrome-violet)); }
+@utility chrome-bar-lime { background: linear-gradient(90deg, var(--chrome-pink), var(--chrome-lime)); }
+
+@layer base {
+  * { border-color: var(--color-border); }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
   }
+  button, input, textarea, select { font: inherit; }
 }

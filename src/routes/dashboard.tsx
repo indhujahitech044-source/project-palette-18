@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { DashboardPage } from "@/components/htge-app";
+export const Route = createFileRoute("/dashboard")({ head: () => ({ meta: [{ title: "Dashboard — HTGE" }, { name: "description", content: "View HTGE project totals, progress, and recent freelancers." }, { property: "og:title", content: "Dashboard — HTGE" }, { property: "og:description", content: "View HTGE project totals, progress, and recent freelancers." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: DashboardPage });

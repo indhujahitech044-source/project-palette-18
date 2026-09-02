@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ProjectsPage } from "@/components/htge-app";
+export const Route = createFileRoute("/projects/publish")({ head: () => ({ meta: [{ title: "Publish Projects — HTGE" }, { name: "description", content: "Browse published HTGE projects and open a new project brief." }, { property: "og:title", content: "Publish Projects — HTGE" }, { property: "og:description", content: "Browse published HTGE projects and open a new project brief." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: () => <ProjectsPage mode="publish" /> });

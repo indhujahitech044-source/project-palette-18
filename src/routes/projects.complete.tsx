@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ProjectsPage } from "@/components/htge-app";
+export const Route = createFileRoute("/projects/complete")({ head: () => ({ meta: [{ title: "Completed Projects — HTGE" }, { name: "description", content: "Review completed HTGE projects, delivery duration, and ratings." }, { property: "og:title", content: "Completed Projects — HTGE" }, { property: "og:description", content: "Review completed HTGE projects, delivery duration, and ratings." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: () => <ProjectsPage mode="complete" /> });

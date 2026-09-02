@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { NotificationsPage } from "@/components/htge-app";
+export const Route = createFileRoute("/notifications")({ head: () => ({ meta: [{ title: "Notifications — HTGE" }, { name: "description", content: "Review the latest freelancer and project activity in HTGE." }, { property: "og:title", content: "Notifications — HTGE" }, { property: "og:description", content: "Review the latest freelancer and project activity in HTGE." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: NotificationsPage });
