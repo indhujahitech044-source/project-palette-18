@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ProjectsCompleteRouteImport } from './routes/projects.complete'
+import { Route as ProjectsOngoingRouteImport } from './routes/projects.ongoing'
+import { Route as ProjectsPublishRouteImport } from './routes/projects.publish'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsCompleteRoute = ProjectsCompleteRouteImport.update({
+  id: '/projects/complete',
+  path: '/projects/complete',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsOngoingRoute = ProjectsOngoingRouteImport.update({
+  id: '/projects/ongoing',
+  path: '/projects/ongoing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsPublishRoute = ProjectsPublishRouteImport.update({
+  id: '/projects/publish',
+  path: '/projects/publish',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/notifications': typeof NotificationsRoute
+  '/settings': typeof SettingsRoute
+  '/projects/complete': typeof ProjectsCompleteRoute
+  '/projects/ongoing': typeof ProjectsOngoingRoute
+  '/projects/publish': typeof ProjectsPublishRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/notifications': typeof NotificationsRoute
+  '/settings': typeof SettingsRoute
+  '/projects/complete': typeof ProjectsCompleteRoute
+  '/projects/ongoing': typeof ProjectsOngoingRoute
+  '/projects/publish': typeof ProjectsPublishRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/notifications': typeof NotificationsRoute
+  '/settings': typeof SettingsRoute
+  '/projects/complete': typeof ProjectsCompleteRoute
+  '/projects/ongoing': typeof ProjectsOngoingRoute
+  '/projects/publish': typeof ProjectsPublishRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/notifications'
+    | '/settings'
+    | '/projects/complete'
+    | '/projects/ongoing'
+    | '/projects/publish'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/notifications'
+    | '/settings'
+    | '/projects/complete'
+    | '/projects/ongoing'
+    | '/projects/publish'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/notifications'
+    | '/settings'
+    | '/projects/complete'
+    | '/projects/ongoing'
+    | '/projects/publish'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
+  NotificationsRoute: typeof NotificationsRoute
+  SettingsRoute: typeof SettingsRoute
+  ProjectsCompleteRoute: typeof ProjectsCompleteRoute
+  ProjectsOngoingRoute: typeof ProjectsOngoingRoute
+  ProjectsPublishRoute: typeof ProjectsPublishRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/complete': {
+      id: '/projects/complete'
+      path: '/projects/complete'
+      fullPath: '/projects/complete'
+      preLoaderRoute: typeof ProjectsCompleteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/ongoing': {
+      id: '/projects/ongoing'
+      path: '/projects/ongoing'
+      fullPath: '/projects/ongoing'
+      preLoaderRoute: typeof ProjectsOngoingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/publish': {
+      id: '/projects/publish'
+      path: '/projects/publish'
+      fullPath: '/projects/publish'
+      preLoaderRoute: typeof ProjectsPublishRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
+  NotificationsRoute: NotificationsRoute,
+  SettingsRoute: SettingsRoute,
+  ProjectsCompleteRoute: ProjectsCompleteRoute,
+  ProjectsOngoingRoute: ProjectsOngoingRoute,
+  ProjectsPublishRoute: ProjectsPublishRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
