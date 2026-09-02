@@ -10,24 +10,22 @@ import { projects, freelancers, months, type Project, type ProjectStatus } from 
 const cx = (...classes: Array<string | false | undefined>) => classes.filter(Boolean).join(" ");
 
 function Brand() {
-  return <Link to="/dashboard" className="flex items-center gap-2 px-1"><span className="chrome-mark grid size-9 place-items-center rounded-xl text-lg font-bold shadow-md">H</span><span className="font-display text-lg font-bold tracking-tight text-chrome-ink">HTGE</span></Link>;
+  return <Link to="/dashboard" className="flex items-center gap-2 px-1"><span className="chrome-mark grid size-9 place-items-center rounded-md text-lg font-bold">H</span><span className="font-display text-lg font-bold tracking-tight text-chrome-ink">HTGE</span></Link>;
 }
 
 export function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("maya@htge.co");
   const [password, setPassword] = useState("password");
-  return <main className="chrome-login-shell relative grid min-h-screen place-items-center overflow-hidden px-6 py-12">
-    <div className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-chrome-lime/35 blur-3xl" />
-    <div className="pointer-events-none absolute -right-16 top-1/3 size-80 rounded-full bg-chrome-pink/25 blur-3xl" />
-    <section className="relative w-full max-w-sm rounded-[30px] border border-card/70 bg-card/85 p-8 shadow-[var(--chrome-shadow)] backdrop-blur-xl">
-      <div className="chrome-mark mx-auto mb-5 grid size-14 place-items-center rounded-2xl text-2xl font-bold shadow-lg">H</div>
+  return <main className="chrome-login-shell grid min-h-screen place-items-center px-6 py-12">
+    <section className="w-full max-w-sm rounded-lg border border-chrome-line bg-card p-8 shadow-sm">
+      <div className="chrome-mark mx-auto mb-5 grid size-14 place-items-center rounded-md text-2xl font-bold">H</div>
       <h1 className="text-center font-display text-2xl font-bold tracking-tight text-chrome-ink">HTGE</h1>
       <p className="mt-1 text-center text-sm text-muted-foreground">Freelancer project platform</p>
       <form className="mt-6 space-y-4" onSubmit={(event) => { event.preventDefault(); if (email && password) navigate({ to: "/dashboard" }); }}>
         <label className="block"><span className="field-label">Email</span><Input value={email} onChange={(event) => setEmail(event.target.value)} type="email" required className="mt-1.5 h-11 rounded-xl bg-card/80" /></label>
         <label className="block"><span className="field-label">Password</span><Input value={password} onChange={(event) => setPassword(event.target.value)} type="password" required className="mt-1.5 h-11 rounded-xl bg-card/80" /></label>
-        <Button type="submit" className="chrome-button h-12 w-full rounded-xl">Log in</Button>
+        <Button type="submit" className="chrome-button h-12 w-full rounded-md">Log in</Button>
         <p className="text-center text-xs text-muted-foreground">Need to change password? Please contact <span className="font-semibold text-chrome-violet">HTGE</span> (msg).</p>
       </form>
     </section>
@@ -38,33 +36,33 @@ function Sidebar({ collapsed, setCollapsed }: { collapsed: boolean; setCollapsed
   const location = useLocation();
   const [projectsOpen, setProjectsOpen] = useState(true);
   const active = (path: string) => location.pathname === path;
-  return <aside className={cx("hidden shrink-0 border-r border-chrome-line bg-card/75 p-4 backdrop-blur-xl transition-all md:block", collapsed ? "w-[76px]" : "w-64")}>
+  return <aside className={cx("hidden shrink-0 border-r border-chrome-line bg-card p-4 transition-all md:block", collapsed ? "w-[76px]" : "w-64")}>
     <div className="flex h-12 items-center justify-between"><Brand /><Button variant="ghost" size="icon" aria-label="Collapse sidebar" onClick={() => setCollapsed(!collapsed)} className={cx("text-muted-foreground", collapsed && "hidden")}><ChevronLeft className="size-4" /></Button></div>
     {collapsed && <Button variant="ghost" size="icon" aria-label="Expand sidebar" onClick={() => setCollapsed(false)} className="mt-2 text-muted-foreground"><Menu className="size-4" /></Button>}
     <nav className="mt-8 space-y-1.5">
       <NavItem to="/dashboard" label="Dashboard" icon={<LayoutDashboard />} active={active("/dashboard")} collapsed={collapsed} />
-      <button type="button" onClick={() => setProjectsOpen(!projectsOpen)} className={cx("flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-muted-foreground transition hover:bg-chrome-cream", collapsed && "justify-center px-0")}><BriefcaseBusiness className="size-4 shrink-0" />{!collapsed && <><span className="flex-1">Projects</span><ChevronDown className={cx("size-4 transition", !projectsOpen && "-rotate-90")} /></>}</button>
+      <button type="button" onClick={() => setProjectsOpen(!projectsOpen)} className={cx("flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm font-medium text-muted-foreground transition hover:bg-chrome-cream", collapsed && "justify-center px-0")}><BriefcaseBusiness className="size-4 shrink-0" />{!collapsed && <><span className="flex-1">Projects</span><ChevronDown className={cx("size-4 transition", !projectsOpen && "-rotate-90")} /></>}</button>
       {projectsOpen && !collapsed && <div className="ml-4 space-y-1 border-l border-chrome-line pl-3"><SubNavItem to="/projects/publish" label="Publish" active={active("/projects/publish")} /><SubNavItem to="/projects/ongoing" label="Ongoing" active={active("/projects/ongoing")} /><SubNavItem to="/projects/complete" label="Complete" active={active("/projects/complete")} /></div>}
       <NavItem to="/notifications" label="Notifications" icon={<Bell />} active={active("/notifications")} collapsed={collapsed} />
       <NavItem to="/settings" label="Settings" icon={<SettingsIcon />} active={active("/settings")} collapsed={collapsed} />
     </nav>
-    {!collapsed && <div className="mt-8 rounded-2xl border border-chrome-pink/20 bg-chrome-soft-gradient p-4"><p className="font-display text-sm font-bold text-chrome-ink">Pro tip</p><p className="mt-1 text-xs text-muted-foreground">Auto-assign freelancers by skill match.</p></div>}
+      {!collapsed && <div className="mt-8 rounded-md border border-chrome-line bg-chrome-cream p-4"><p className="font-display text-sm font-bold text-chrome-ink">Pro tip</p><p className="mt-1 text-xs text-muted-foreground">Auto-assign freelancers by skill match.</p></div>}
   </aside>;
 }
 
 function NavItem({ to, label, icon, active, collapsed }: { to: string; label: string; icon: ReactNode; active: boolean; collapsed: boolean }) {
-  return <Link to={to} className={cx("flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition", active ? "chrome-button font-semibold" : "text-muted-foreground hover:bg-chrome-cream", collapsed && "justify-center px-0")}><span className="[&>svg]:size-4">{icon}</span>{!collapsed && <span>{label}</span>}</Link>;
+  return <Link to={to} className={cx("flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition", active ? "bg-chrome-violet font-semibold text-primary-foreground" : "text-muted-foreground hover:bg-chrome-cream", collapsed && "justify-center px-0")}><span className="[&>svg]:size-4">{icon}</span>{!collapsed && <span>{label}</span>}</Link>;
 }
 
 function SubNavItem({ to, label, active }: { to: string; label: string; active: boolean }) {
-  return <Link to={to} className={cx("block rounded-lg px-3 py-2 text-sm transition", active ? "bg-chrome-violet/10 font-semibold text-chrome-violet" : "text-muted-foreground hover:bg-chrome-cream")}>{label}</Link>;
+  return <Link to={to} className={cx("block rounded-md px-3 py-2 text-sm transition", active ? "bg-chrome-violet/10 font-semibold text-chrome-violet" : "text-muted-foreground hover:bg-chrome-cream")}>{label}</Link>;
 }
 
 export function AppLayout({ title, children }: { title: string; children: ReactNode }) {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  return <div className="flex min-h-screen bg-chrome-cream text-chrome-ink"><Sidebar collapsed={collapsed} setCollapsed={setCollapsed} /><div className="flex min-w-0 flex-1 flex-col"><header className="sticky top-0 z-30 flex min-h-20 items-center justify-between border-b border-chrome-line bg-card/75 px-4 backdrop-blur-xl sm:px-8"><div className="flex items-center gap-3"><Button variant="ghost" size="icon" className="md:hidden" aria-label="Open navigation"><Menu className="size-5" /></Button><h2 className="font-display text-lg font-bold tracking-tight sm:text-xl">{title}</h2></div><div className="relative flex items-center gap-2"><Button variant="ghost" size="icon" aria-label="Notifications" onClick={() => navigate({ to: "/notifications" })} className="relative text-muted-foreground"><Bell className="size-5" /><span className="absolute right-1.5 top-1.5 grid size-4 place-items-center rounded-full bg-chrome-pink text-[9px] font-bold text-primary-foreground">3</span></Button><Button variant="ghost" size="icon" aria-label="Open profile menu" onClick={() => setProfileOpen(!profileOpen)} className="chrome-mark size-10 rounded-full text-xs font-bold shadow-md">MK</Button>{profileOpen && <div className="absolute right-0 top-12 z-50 w-52 rounded-2xl border border-chrome-line bg-card p-2 shadow-xl"><p className="px-3 py-2 text-xs font-semibold text-muted-foreground">Maya Kapoor</p><Link to="/settings" className="block rounded-lg px-3 py-2 text-sm hover:bg-chrome-cream">Settings</Link><button type="button" onClick={() => navigate({ to: "/" })} className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-semibold text-chrome-pink hover:bg-chrome-pink/10"><LogOut className="size-4" />Log out</button></div>}</div></header><main className="flex-1 p-4 sm:p-8">{children}</main></div></div>;
+  return <div className="flex min-h-screen bg-chrome-cream text-chrome-ink"><Sidebar collapsed={collapsed} setCollapsed={setCollapsed} /><div className="flex min-w-0 flex-1 flex-col"><header className="sticky top-0 z-30 flex min-h-20 items-center justify-between border-b border-chrome-line bg-card px-4 sm:px-8"><div className="flex items-center gap-3"><Button variant="ghost" size="icon" className="md:hidden" aria-label="Open navigation"><Menu className="size-5" /></Button><h2 className="font-display text-lg font-bold tracking-tight sm:text-xl">{title}</h2></div><div className="relative flex items-center gap-2"><Button variant="ghost" size="icon" aria-label="Notifications" onClick={() => navigate({ to: "/notifications" })} className="relative text-muted-foreground"><Bell className="size-5" /><span className="absolute right-1.5 top-1.5 grid size-4 place-items-center rounded-full bg-chrome-pink text-[9px] font-bold text-primary-foreground">3</span></Button><Button variant="ghost" size="icon" aria-label="Open profile menu" onClick={() => setProfileOpen(!profileOpen)} className="chrome-mark size-10 rounded-full text-xs font-bold">MK</Button>{profileOpen && <div className="absolute right-0 top-12 z-50 w-52 rounded-md border border-chrome-line bg-card p-2 shadow-lg"><p className="px-3 py-2 text-xs font-semibold text-muted-foreground">Maya Kapoor</p><Link to="/settings" className="block rounded-md px-3 py-2 text-sm hover:bg-chrome-cream">Settings</Link><button type="button" onClick={() => navigate({ to: "/" })} className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm font-semibold text-chrome-pink hover:bg-chrome-pink/10"><LogOut className="size-4" />Log out</button></div>}</div></header><main className="flex-1 p-4 sm:p-8">{children}</main></div></div>;
 }
 
 function DateFilters({ range = false }: { range?: boolean }) {
