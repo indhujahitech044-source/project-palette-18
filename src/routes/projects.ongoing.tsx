@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ProjectsPage } from "@/components/htge-app";
+export const Route = createFileRoute("/projects/ongoing")({ head: () => ({ meta: [{ title: "Ongoing Projects — HTGE" }, { name: "description", content: "Track active HTGE freelancer projects and team involvement." }, { property: "og:title", content: "Ongoing Projects — HTGE" }, { property: "og:description", content: "Track active HTGE freelancer projects and team involvement." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: () => <ProjectsPage mode="ongoing" /> });
